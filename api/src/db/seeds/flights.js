@@ -1,8 +1,10 @@
+import logger from "../../utils/logger.js";
+
 export const seedFlights = async (Flights) => {
   const count = await Flights.count();
 
   if (count > 0) {
-    console.log("Flights already seeded, skipping seeding.");
+    logger.info("Flights already seeded, skipping seeding.");
     return;
   }
 
@@ -69,5 +71,5 @@ export const seedFlights = async (Flights) => {
     },
   ]);
 
-  console.log("Flights seeded");
+  logger.info("Flights seeded");
 };

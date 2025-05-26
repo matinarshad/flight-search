@@ -8,6 +8,7 @@ import resolvers from "./graphql/flights/resolvers/index.js";
 import { seedFlights } from "./db/seeds/flights.js";
 import { createFlightsTable } from "./db/tables/flights.js";
 import defineFlightsModel from "./models/flights.js";
+import logger from "./utils/logger.js";
 
 dotenv.config();
 
@@ -23,13 +24,13 @@ const startServer = async () => {
 
   try {
     await sequelize.authenticate();
-    console.log("Database is connected.");
+    logger.info("Database is connected.");
 
     await createFlightsTable(sequelize);
 
     await seedFlights(Flights);
   } catch (err) {
-    console.error("Unable to connect to the database:", err);
+    logger.error("Unable to connect to the database:", err);
   }
 
   // Setup Redis client
@@ -37,13 +38,13 @@ const startServer = async () => {
     url: process.env.REDIS_URL,
   });
 
-  redisClient.on("error", (err) => console.error("Redis Client Error", err));
+  redisClient.on("error", (err) => logger.error("Redis Client Error", err));
 
   try {
     await redisClient.connect();
-    console.log("Redis connected");
+    logger.info("Redis connected");
   } catch (err) {
-    console.error("Redis connection failed:", err);
+    logger.error("Redis connection failed:", err);
   }
 
   // Create Apollo server
@@ -59,12 +60,12 @@ const startServer = async () => {
 
     const PORT = process.env.PORT || 4000;
     app.listen(PORT, () => {
-      console.log(
+      logger.info(
         `Server ready at http://localhost:${PORT}${server.graphqlPath}`
       );
     });
   } catch (err) {
-    console.error("Failed to start server:", err);
+    logger.error("Failed to start server:", err);
   }
 };
 

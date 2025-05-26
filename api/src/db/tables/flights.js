@@ -1,3 +1,5 @@
+import logger from "../../utils/logger.js";
+
 export async function createFlightsTable(sequelize) {
   const createTableSQL = `
     CREATE TABLE IF NOT EXISTS flights (
@@ -30,9 +32,9 @@ export async function createFlightsTable(sequelize) {
 
   try {
     await sequelize.query(createTableSQL);
-    console.log("Flights table created (if not exists)");
+    logger.info("Flights table created (if not exists)");
   } catch (error) {
-    console.error("Error creating flights table:", error);
+    logger.error("Error creating flights table:", error);
     throw error;
   }
 }
