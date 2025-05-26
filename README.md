@@ -19,13 +19,23 @@ This project is a flight search application that calculates CO₂ emissions for 
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/matinarshad/flight-search.git
-   cd api
+   git clone https://github.com/matinarshad/flight-search.gita
+   cd flight-search/api
    npm install
 
-2. Set up Backend server, PostgreSQL and Redis:
+2. Set up Backend server by creating `.env` in `api` directory, use below as an example or check `.env.example`, PostgreSQL and Redis:
    ```bash
-   docker compose up --build
+   POSTGRES_USER=user
+   POSTGRES_PASSWORD=strongpassword
+   POSTGRES_DB=flights_db
+   DATABASE_URL=postgres://user:strongpassword@postgres:5432/flights_db
+   REDIS_URL=redis://redis:6379
+
+- Then, run the following command to build and start your services:
+  ```bash
+  docker compose up --build
+
+- Wait until the database is connected — you should see the message "Database is connected" in the logs of the API Docker container.
 
 3. Navigate to [http://localhost:4000/graphql](http://localhost:4000/graphql) to run GraphQL queries:
 
