@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 
 export default (sequelize) => {
   const Flights = sequelize.define(
-    "flight",
+    "flights",
     {
       id: {
         type: DataTypes.INTEGER,
