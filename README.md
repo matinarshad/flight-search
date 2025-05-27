@@ -13,13 +13,14 @@ This project is a flight search application that calculates CO₂ emissions for 
 - **Flight Sorting**: Sorting of flights by price, duration, or departure time.
 - **Filtering**: Filtering by airline or price range.
 - **Caching**: Cache GraphQL query results using Redis for improved performance.
+- **Logging**: Utilizes Winston to capture informational and error logs.
 
 ## Getting Started
 
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/matinarshad/flight-search.gita
+   git clone https://github.com/matinarshad/flight-search.git
    cd flight-search/api
    npm install
 
